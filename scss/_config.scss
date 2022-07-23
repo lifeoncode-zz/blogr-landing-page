@@ -9,6 +9,11 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+    background-color: $White;
+}
+
 ::-webkit-scrollbar {
     width: 4px;
     background-color: inherit;

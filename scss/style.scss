@@ -10,6 +10,8 @@ header {
     padding: 20px 0;
     background-color: transparent;
     transition: all 0.3 ease;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
 
     &.background {
         padding: 10px 0;
@@ -19,6 +21,10 @@ header {
     .container {
         @include grid(0.8fr 2fr 2fr, 0px);
         align-items: center;
+
+        @media only screen and (max-width: 960px) {
+            @include flex($justify:space-between);
+        }
     }
 
     nav {
@@ -49,14 +55,25 @@ header {
                 background-color: $White;
                 padding: 10px 20px;
                 border-radius: 10px;
-                display: none;
+                transform: translateY(-160%);
+                opacity: 0;
+                transition: all 0.5s ease;
+
+                &.drop {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
     
                 a {
                     margin: 5px 0;
+                    color: $Very-dark-black-blue;
                 }
             }
         }
-        
+
+        @media only screen and (max-width: 960px) {
+            display: none;
+        }
     }
 
     .account {
@@ -71,10 +88,93 @@ header {
             margin-left: 30px;
             background-color: $White;
             color: $Light-red;
+
+            &:hover {
+                background-color: $Very-light-red;
+                color: $White;
+            }
+        }
+
+        @media only screen and (max-width: 960px) {
+            display: none;
+        }
+    }
+
+    .hamburger {
+        display: none;
+        
+        @media only screen and (max-width: 960px) {
+            display: block;
         }
     }
 }
 
+.mobile-menu {
+    width: 80%;
+    position: fixed;
+    z-index: 2;
+    top: 10%;
+    left: 10%;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    background-color: $White;
+    opacity: 0;
+    transform: translateY(-150%);
+    transition: all 0.5s ease;
+
+    &.open {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .dropdown {
+        span {
+            font-size: 20px;
+        }
+        
+        .menu {
+            @include flex($direction:column);
+            margin: 10px 0 20px 0;
+            background-color: $Very-dark-grayish-blue;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 0;
+            height: 0;
+
+            &.drop {
+                padding: 10px;
+                height: auto;
+            }
+
+            a {
+                margin: 5px 0;
+                color: $White;
+            }
+        }
+    }
+
+    .account {
+        border-top: 1px solid rgba(27, 38, 55, 0.144);
+        margin-top: 30px;
+        padding-top: 20px;
+        
+        a {
+            margin: 0;
+            color: $Very-dark-blue;
+            font-weight: bold;
+            font-size: 20px;
+
+            &.btn {
+                margin-top: 20px;
+                background-color: $Light-red;
+                padding: 20px 60px;
+                border-radius: 60px;
+                color: $White;
+            }
+        }
+    }
+}
 
 .hero {
     text-align: center;
@@ -85,6 +185,8 @@ header {
     background-position-x: left;
     background-position-y: 55%;
     background-size: 170%;
+    border-bottom-left-radius: 100px;
+
 
     .heading {
         color: $White;
@@ -93,23 +195,270 @@ header {
     p {
         font-size: 18px;
         margin: 30px 0 40px 0;
-        color: $Grayish-blue;
+        color: $White;
     }
 
     a {
         font-size: 16px;
         margin: 0 20px;
+        transition: all 0.3s ease;
 
         &:nth-of-type(1) {
             background-color: $White;
             border: 1px solid $White;
             color: $Light-red;
+            
+            &:hover {
+                color: $White;
+                background-color: transparent;
+            }
         }
 
         &:nth-of-type(2) {
             background-color: transparent;
             border: 1px solid $White;
             color: $White;
+
+            &:hover {
+                background-color: $Light-red;
+                border: 1px solid $Light-red;
+                color: $White;
+            }
+        }
+
+        @media only screen and (max-width:500px) {
+            display: block;
+            max-width: 70%;
+            margin: 10px auto;
+        }
+    }
+}
+
+.about {
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: $Very-dark-grayish-blue;
+        margin: 30px 0 50px 0;
+
+        @media only screen and (max-width: 1200px) {
+            margin: 20px 0 30px 0;
+        }
+    }
+    
+    .heading {
+        color: $Very-dark-blue;
+    }
+    
+    .about-grid {
+        @include grid(1fr 1.5fr, 30px);
+
+        @media only screen and (max-width: 1200px) {
+            @include grid(1fr 1.5fr, 0px);
+        }
+
+        @media only screen and (max-width: 1050px) {
+            @include flex($align:flex-start, $justify:flex-start, $direction:column-reverse);
+        }
+    }
+
+    .text {
+        align-self: center;
+
+        @media only screen and (max-width: 1050px) {
+            width: 70%;
+            align-self: auto;
+        }
+
+        @media only screen and (max-width: 750px) {
+            width: 90%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            width: 100%;
+        }
+    }
+    
+    .image {
+        img {
+            width: 100%;
+            transform: translateX(20%);
+
+            @media only screen and (max-width: 1050px) {
+                transform: translateX(0);
+            }
+        }
+        
+        @media only screen and (max-width: 1050px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 860px) {
+        padding-bottom: 200px;
+    }
+}
+
+
+.state-of-the-art {
+    background-color: $Very-dark-gray-blue;
+    background-image: url('../images/bg-pattern-circles.svg');
+    background-size: 60%;
+    background-position-x: -30%;
+    background-position-y: 80%;
+    background-repeat: no-repeat;
+    color: $White;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+
+    .container {
+        @include grid(1fr 1fr, 20px);
+
+        @media only screen and (max-width: 940px) {
+            display: block;
+        }
+    }
+
+    .image {
+        position: relative;
+
+        .phone {
+            width: 100%;
+            position: absolute;
+            bottom: -160%;
+            left: 0;
+
+            @media only screen and (max-width: 1236px) {
+                bottom: -100%;
+            }
+
+            @media only screen and (max-width: 1148px) {
+                bottom: -80%;
+            }
+
+            @media only screen and (max-width: 1020px) {
+                bottom: -60%;
+            }
+        
+            @media only screen and (max-width: 940px) {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+
+    .text {
+        .heading {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 940px) {
+        background-image: none;
+        padding-top: 700px;
+    }
+
+    @media only screen and (max-width: 840px) {
+        padding-top: 600px;
+    }
+
+    @media only screen and (max-width: 720px) {
+        padding-top: 500px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        padding-top: 400px;
+    }
+
+    @media only screen and (max-width: 520px) {
+        padding-top: 300px;
+    }
+}
+
+
+
+.free-open-simple {
+    p {
+        color: $Very-dark-grayish-blue;
+        margin: 30px 0 50px 0;
+    }
+    
+    .heading {
+        color: $Very-dark-blue;
+    }
+    
+    .container {
+        @include grid(1.8fr 1fr, 0px);
+
+        @media only screen and (max-width: 1100px) {
+            display: block;
+        }
+    }
+
+    .text {
+        align-self: center;
+        
+        @media only screen and (max-width: 1100px) {
+            width: 70%;
+        }
+
+        @media only screen and (max-width: 700px) {
+            width: 90%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            width: 100%;
+        }
+    }
+    
+    .image {
+        img {
+            width: 100%;
+            transform: translateX(-20%);
+
+            @media only screen and (max-width: 1100px) {
+                transform: translateX(0);
+            }
+        }
+
+        @media only screen and (max-width: 1100px) {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+footer {
+    border-top-right-radius: 100px;
+    background-color: $Very-dark-black-blue;
+
+    .container {
+        @include grid(repeat(4, 1fr), 30px);
+
+        div {
+            @include flex($align:flex-start, $direction:column, $justify:flex-start);
+
+            .heading {
+                margin-bottom: 20px;
+                color: $White;
+            }
+
+            a {
+                color: $Grayish-blue;
+                margin-bottom: 5px;
+            }
+
+            @media only screen and (max-width: 800px) {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            display: block;
         }
     }
 }
