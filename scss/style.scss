@@ -1,0 +1,115 @@
+@import './config';
+
+header {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    background-color: transparent;
+    transition: all 0.3 ease;
+
+    &.background {
+        padding: 10px 0;
+        background-color: $Light-red;
+    }
+
+    .container {
+        @include grid(0.8fr 2fr 2fr, 0px);
+        align-items: center;
+    }
+
+    nav {
+        @include flex($align:flex-start, $justify:space-between);
+
+        span {
+            cursor: pointer;
+            color: $White;
+
+            &:hover {
+                text-decoration: underline;
+            }
+            
+            .fas {
+                margin-left: 5px;
+                font-size: 80%;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+
+            .menu {
+                position: absolute;
+                top: 30px;
+                left: -20px;
+                @include flex($direction:column);
+                background-color: $White;
+                padding: 10px 20px;
+                border-radius: 10px;
+                display: none;
+    
+                a {
+                    margin: 5px 0;
+                }
+            }
+        }
+        
+    }
+
+    .account {
+        text-align: right;
+
+        a {
+            color: $White;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-left: 30px;
+            background-color: $White;
+            color: $Light-red;
+        }
+    }
+}
+
+
+.hero {
+    text-align: center;
+    padding: 200px 0;
+    background-color: $Light-red;
+    background-image: url('../images/bg-pattern-intro-desktop.svg');
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: 55%;
+    background-size: 170%;
+
+    .heading {
+        color: $White;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 30px 0 40px 0;
+        color: $Grayish-blue;
+    }
+
+    a {
+        font-size: 16px;
+        margin: 0 20px;
+
+        &:nth-of-type(1) {
+            background-color: $White;
+            border: 1px solid $White;
+            color: $Light-red;
+        }
+
+        &:nth-of-type(2) {
+            background-color: transparent;
+            border: 1px solid $White;
+            color: $White;
+        }
+    }
+}

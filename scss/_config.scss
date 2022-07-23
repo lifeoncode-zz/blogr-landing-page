@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;600&family=Ubuntu:wght@400;500;700&display=swap');
+@import './colors';
+
+* {
+    box-sizing: border-box;
+    margin: 0;    
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: inherit;
+
+    &-thumb {
+        background-color: $Very-dark-blue;
+        border-radius: 30px;
+    }
+}
+
+// functions for layout
+@mixin flex($align:center, $justify:center, $direction:row, $wrap:wrap) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+
+@mixin grid($columns:1fr, $gap:20px) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-gap: $gap;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 1250px) {
+        max-width: 90%;
+    }
+
+    @media only screen and (max-width: 700px) {
+        max-width: 95%;
+    }
+}
+
+// all sections
+section {
+    padding: 100px 0;
+}
+
+footer {
+    padding: 50px 0;
+}
+
+// text elements
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+span {
+    @extend p;
+}
+
+a {
+    @extend p;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.heading {
+    font-family: 'Overpass', sans-serif;
+}
+
+.btn {
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    font-weight: bold;
+}
